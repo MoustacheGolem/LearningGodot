@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scripts/EntityB.gd" type="Script" id=1]
+[ext_resource path="res://assets/pugnala_walk.png" type="Texture" id=2]
+[ext_resource path="res://resources/bases/Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/Themes/healthbar.tres" type="Theme" id=4]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0;
+
+void fragment(){
+	vec4 color = texture(TEXTURE,UV);
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 29, 35 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 29, 0, 29, 35 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 58, 0, 29, 35 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 87, 0, 29, 35 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "pugnala_walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 11.0
+
+[sub_resource type="Animation" id=9]
+resource_name = "Flash animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.812254, 4.75683 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="EntityB" type="KinematicBody2D"]
+script = ExtResource( 1 )
+defence = 1.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 8 )
+frames = SubResource( 5 )
+animation = "pugnala_walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 16 )
+shape = SubResource( 6 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -17.0
+margin_top = -30.0
+margin_right = 16.0
+margin_bottom = -26.0
+theme = ExtResource( 4 )
+value = 50.0
+percent_visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Flash animation" = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[editable path="Hurtbox"]
