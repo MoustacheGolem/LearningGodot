@@ -18,11 +18,22 @@ animations = [ {
 } ]
 
 [node name="PlayerProjectileBase" instance=ExtResource( 1 )]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource( 4 )
 damage = 10.0
+duration = 2.0
 projectile_speed = 200
+damage_multiplier = 0.0
+area_multiplier = 0.0
+projectile_speed_multiplier = 0.0
+projectile_pierce = 0
+duration_multiplier = 0.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 2 )
 
 [node name="MoveMB" parent="." index="2" instance=ExtResource( 2 )]
+
+[connection signal="area_shape_entered" from="." to="." method="_on_PlayerProjectileBase_area_shape_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_PlayerProjectileBase_body_shape_entered"]

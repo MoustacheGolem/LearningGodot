@@ -1,4 +1,5 @@
-extends KinematicBody2D
+extends "res://scripts/EntityB.gd"
+
 
 
 
@@ -26,11 +27,12 @@ func get_input_direction():
 	return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 func _process(delta):
-
+	$HealthBar.value = health
 	pass
 
 func move():
-	velocity = move_and_slide(velocity)
+	set_linear_velocity(velocity)
+#	velocity = move_and_slide(velocity)
 
 func _integrate_forces(state):
 	pass

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 # current maximum health value
 export(float) var max_health: float = 100
@@ -33,6 +33,9 @@ export(float) var area_multiplier: float = 0
 # multiplicative modifier to projectile speed
 export(float) var projectile_speed_multiplier:  float = 0
 
+# bonus projectile pierce
+export(int) var projectile_pierce: int = 0
+
 # multiplicative modifier to duration
 export(float) var duration_multiplier: float = 0
 
@@ -48,19 +51,25 @@ var velocity
 func _ready():
 	pass # Replace with function body.
 
-func move():
-	velocity = move_and_slide(velocity)
+#func move():
+#	velocity = move(velocity)
 
-func _process(delta):
-	
-	$HealthBar.value = health
+
+func _integrate_forces(state):
 	pass
+func _process(delta):
+	$HealthBar.value = health
+	
 	
 func _physics_process(delta):
 	pass
 	
-func take_damage(value):
-	health -= clamp((value - block) * (1-defence), 0, max_health)
-	$AnimationPlayer.play("Flash animation")
+func Die():
+	queue_free()
+	
+func HandleDamage(value):
+	health -= (value - block) * (1-defence)
+	health = clamp(health,0,max_health)
+	$FlashAnimation.play("Flash animation")
 
 

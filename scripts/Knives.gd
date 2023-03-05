@@ -1,7 +1,7 @@
 extends "res://scripts/SpellB.gd"
 
-var KNIFE = preload("res://resources/projectiles/Axe.tscn")
-const  default_projectiles = 150
+var KNIFE = preload("res://resources/bases/PlayerProjectileB.tscn")
+const  default_projectiles = 1
 const  default_cooldown = 2.0
 const  default_pierce = 0
 
@@ -46,7 +46,7 @@ func create_knife():
 	knife.global_position = Vector2(100,100)
 	
 #			knife.rotation = get_parent().get_input_direction().normalized().angle()
-	knife.rotation = Vector2(1,1).angle()+rand_range(0,1)
+	knife.rotation = Vector2(1,1).angle()
 	
 	var placemente_modifier = Vector2(0,rand_range(-20,20)).rotated(knife.rotation)
 	knife.global_position += placemente_modifier
