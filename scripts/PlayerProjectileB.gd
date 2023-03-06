@@ -3,10 +3,10 @@ extends "res://scripts/Hitbox.gd"
 
 
 # base damage of all player projectiles
-export var damage = 10.0
+export var damage = 25.0
 
 # base duration of all player projectiles
-export(float) var duration: float = 2
+export(float) var duration: float = 6
 
 # base projectile speed of all projectiles
 export var projectile_speed = 200
@@ -21,21 +21,22 @@ export(float) var area_multiplier: float = 0
 export(float) var projectile_speed_multiplier:  float = 0
 
 # projectile pierce
-export(int) var projectile_pierce: int = 0
+export(int) var projectile_pierce: int = 10
 
 # multiplicative modifier to duration
 export(float) var duration_multiplier: float = 0
 
 
-# Called when the node enters the scene tree for the first time.
+func Init(_damage_multiplier, _area_multiplier, _projectile_speed_multiplier, _projectile_pierce, _duration_multiplier):
+	damage *=  (1+_damage_multiplier)
+	scale *= _area_multiplier
+	projectile_speed *=  _projectile_speed_multiplier
+	projectile_pierce += _projectile_pierce
+
 func _ready():
 	$MoveMB.init(projectile_speed)
-	pass # Replace with function body.
-
-func Init(_damage_multiplier,_area_multiplier,_projectile_speed_multiplier,_projectile_pierce):
-	pass
-
-
+	$DurationTimer.start(duration * (1+duration_multiplier))
+	
 func Die():
 	queue_free()
 
@@ -47,7 +48,10 @@ func HanldeHit():
 	
 func _on_PlayerProjectileBase_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	HanldeHit()
+	area.get_parent().HandleDamage(damage * (1+damage_multiplier))
 
+func _on_DurationTimer_timeout():
+	Die()
 
-func _on_PlayerProjectileBase_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	pass # Replace with function body.
+func _on_Notifier_screen_exited():
+	queue_free()

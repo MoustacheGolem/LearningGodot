@@ -18,14 +18,20 @@ export(float) var area_multiplier: float = 0
 export(float) var duration_multiplier: float = 0
 
 
-
+	
+	
 func _ready():
+	ResetStats()
 	pass 
-
 
 func LevelUp():
 	SetLevel(level+1)
 
-
 func SetLevel(val):
 	assert(false)
+	
+func ResetStats():
+	damage_multiplier = 0
+	projectile_speed_multiplier = 0
+	area_multiplier = 0
+	duration_multiplier = 0

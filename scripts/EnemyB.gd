@@ -8,7 +8,7 @@ extends "res://scripts/EntityB.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$PursueMB.init(15,Vector2(100,100))
 	pass # Replace with function body.
 
 
@@ -18,6 +18,3 @@ func _ready():
 #	pass
 
 
-func _on_Hurtbox_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	HandleDamage(area.damage)
-	

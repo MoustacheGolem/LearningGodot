@@ -21,19 +21,27 @@ animations = [ {
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 4 )
-damage = 10.0
-duration = 2.0
+damage = 25.0
+duration = 6.0
 projectile_speed = 200
 damage_multiplier = 0.0
 area_multiplier = 0.0
 projectile_speed_multiplier = 0.0
-projectile_pierce = 0
+projectile_pierce = 10
 duration_multiplier = 0.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 10, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 2 )
 
 [node name="MoveMB" parent="." index="2" instance=ExtResource( 2 )]
 
+[node name="DurationTimer" type="Timer" parent="." index="3"]
+
+[node name="Notifier" type="VisibilityNotifier2D" parent="." index="4"]
+
 [connection signal="area_shape_entered" from="." to="." method="_on_PlayerProjectileBase_area_shape_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_PlayerProjectileBase_body_shape_entered"]
+[connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
+[connection signal="screen_exited" from="Notifier" to="." method="_on_Notifier_screen_exited"]

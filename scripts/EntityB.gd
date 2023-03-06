@@ -40,12 +40,12 @@ export(int) var projectile_pierce: int = 0
 export(float) var duration_multiplier: float = 0
 
 # bonus amount
-export(float) var amout_bonus: float = 0
+export(float) var projectile_count_bonus: float = 0
 
 # multiplicative modifier to cooldown
 export(float) var cooldown_multiplier: float = 0
 
-var velocity
+var velocity = Vector2.ZERO
 
 
 func _ready():
@@ -54,15 +54,19 @@ func _ready():
 #func move():
 #	velocity = move(velocity)
 
-
+func move():
+	set_linear_velocity(velocity)
+	
 func _integrate_forces(state):
-	pass
+	move()
+	
 func _process(delta):
 	$HealthBar.value = health
 	
 	
 func _physics_process(delta):
-	pass
+	velocity = Vector2.ZERO
+	
 	
 func Die():
 	queue_free()
@@ -70,6 +74,8 @@ func Die():
 func HandleDamage(value):
 	health -= (value - block) * (1-defence)
 	health = clamp(health,0,max_health)
+	if(health == 0):
+		Die()
 	$FlashAnimation.play("Flash animation")
 
 

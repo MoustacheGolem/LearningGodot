@@ -1,29 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/bases/PlayerB.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Attacks/Knifes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/bases/EnemyB.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/root.gd" type="Script" id=4]
 
 [node name="root" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="PlayerB" parent="." instance=ExtResource( 1 )]
 position = Vector2( 159, 44 )
 collision_layer = 2
 collision_mask = 4
 
-[node name="knives" parent="." instance=ExtResource( 2 )]
-
 [node name="EnemyB" parent="." instance=ExtResource( 3 )]
 position = Vector2( 164, 150 )
-
-[node name="EnemyB2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 151, 163 )
-
-[node name="EnemyB3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 158, 155 )
-
-[node name="EnemyB4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 153, 147 )
-
-[node name="EnemyB5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 146, 148 )

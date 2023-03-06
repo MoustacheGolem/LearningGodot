@@ -26,8 +26,8 @@ resource_local_to_scene = true
 radius = 11.0
 
 [node name="PlayerB" instance=ExtResource( 1 )]
+mass = 9.15
 script = ExtResource( 2 )
-defence = 0.0
 experience = 0.0
 damage = 10.0
 wisdom = 0.0
