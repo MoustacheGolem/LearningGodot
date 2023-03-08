@@ -1,0 +1,46 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+
+var spellData = {
+	\"DART\": [{
+
+		},
+		{
+			\"cooldown_multiplier\": 0.1,
+			\"projectile_count\": 1
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1,
+			\"area_multiplier\": 0.2
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1,
+			\"area_multiplier\": 0.2
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1
+		},
+		{
+			\"damage_multiplier\": 0.5,
+			\"projectile_count\": 1,
+			\"area_multiplier\": 0.2
+		}
+	]
+}
+"
+
+[resource]
+script = SubResource( 1 )

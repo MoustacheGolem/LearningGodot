@@ -13,6 +13,7 @@ var active = false
 #	cooldown += _cooldown
 		
 func _ready():
+
 	if(!KNIFE):
 		print("ERRO PROJ KNIFE NOT LOADED")
 	SetBaseStats()
@@ -25,13 +26,8 @@ func SetBaseStats():
 	
 	remaining_projectiles = projectile_count
 	
-func SetLevel(val):
-	if val >= 1:
-		pass
-		
 
-func Activate(val):
-	pass
+
 	
 func _process(delta):
 	if(active):
@@ -63,8 +59,6 @@ func create_knife():
 	knife.global_position += placemente_modifier
 
 
-func ResetStats():
-	pass
 
 func _on_Cooldown_timeout():
 	attack_ready = true

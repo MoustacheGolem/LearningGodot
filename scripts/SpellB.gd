@@ -3,7 +3,7 @@ extends Node
 # BASE SPELL VALUES
 # current level
 export(int) var level: int = 1 setget SetLevel
-var max_level: int = 8
+var max_level: int = 7
 
 
 # multiplicative modifier to projectile speed
@@ -22,9 +22,10 @@ export(float) var duration_multiplier: float = 0
 export(float) var cooldown: float = 2.0
 var cooldown_multiplier: float = 0
 
-
+var characterData = load("res://Data/ItemData.tres").characterData.DART
 
 func _ready():
+	print(characterData)
 	pass
 func _input(event):
 	var just_pressed = event.is_pressed() and not event.is_echo()
@@ -36,46 +37,47 @@ func _input(event):
 func _process(delta):
 	pass
 		
-var weaponData = [{},{"cooldown_multiplier":1, "area_multiplier":1},{"cooldown_multiplier":1,"area_multiplier":0.1},{"damage_multiplier":0.5, "area_multiplier":0.1}]
+
+
 
 func LevelUp():
-	for key in weaponData[level]:
+	for key in characterData[level]:
 		match key:
 			"damage_multiplier":
-				damage_multiplier += weaponData[level].damage_multiplier
+				damage_multiplier += characterData[level].damage_multiplier
 			"area_multiplier":
-				area_multiplier += weaponData[level].area_multiplier
+				area_multiplier += characterData[level].area_multiplier
 			"projectile_speed_multiplier":
-				projectile_speed_multiplier += weaponData[level].projectile_speed_multiplier
+				projectile_speed_multiplier += characterData[level].projectile_speed_multiplier
 			"pierce":
-				pierce += weaponData[level].pierce
+				pierce += characterData[level].pierce
 			"projectile_count":
-				projectile_count += weaponData[level].projectile_count
+				projectile_count += characterData[level].projectile_count
 			"duration_multiplier" :
-				duration_multiplier += weaponData[level].duration_multiplier
+				duration_multiplier += characterData[level].duration_multiplier
 			"cooldown_multiplier" :
-				cooldown_multiplier -= weaponData[level].cooldown_multiplier
+				cooldown_multiplier -= characterData[level].cooldown_multiplier
 	level = clamp(level+1,0,max_level)
 	pass
 
 func LevelDown():
 	level = clamp(level-1,0,max_level)
-	for key in weaponData[level]:
+	for key in characterData[level]:
 		match key:
 			"damage_multiplier":
-				damage_multiplier -= weaponData[level].damage_multiplier
+				damage_multiplier -= characterData[level].damage_multiplier
 			"area_multiplier":
-				area_multiplier -= weaponData[level].area_multiplier
+				area_multiplier -= characterData[level].area_multiplier
 			"projectile_speed_multiplier":
-				projectile_speed_multiplier -= weaponData[level].projectile_speed_multiplier
+				projectile_speed_multiplier -= characterData[level].projectile_speed_multiplier
 			"pierce":
-				pierce -= weaponData[level].pierce
+				pierce -= characterData[level].pierce
 			"projectile_count":
-				projectile_count -= weaponData[level].projectile_count
+				projectile_count -= characterData[level].projectile_count
 			"duration_multiplier" :
-				duration_multiplier -= weaponData[level].duration_multiplier
+				duration_multiplier -= characterData[level].duration_multiplier
 			"cooldown_multiplier" :
-				cooldown_multiplier += weaponData[level].cooldown_multiplier
+				cooldown_multiplier += characterData[level].cooldown_multiplier
 	pass
 	
 func SetLevel(new_l):

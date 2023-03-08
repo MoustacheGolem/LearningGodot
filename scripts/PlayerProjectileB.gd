@@ -38,7 +38,7 @@ func _ready():
 	pierce += parent_spell.pierce + player.pierce
 	$DurationTimer.start(duration * (1+parent_spell.duration_multiplier+player.duration_multiplier))
 	
-	
+	UpdateStats()
 
 func _process(delta):
 	UpdateStats()

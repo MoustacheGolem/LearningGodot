@@ -1,0 +1,37 @@
+{
+	"DART": [{
+
+        },
+        {
+			"cooldown_multiplier": 0.1,
+            "projectile_count": 1
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1,
+			"area_multiplier": 0.2
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1,
+			"area_multiplier": 0.2
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1
+		},
+		{
+			"damage_multiplier": 0.5,
+			"projectile_count": 1,
+			"area_multiplier": 0.2
+		}
+	]
+}
