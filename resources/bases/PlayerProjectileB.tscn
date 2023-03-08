@@ -21,13 +21,13 @@ animations = [ {
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 4 )
-damage = 25.0
-duration = 6.0
-projectile_speed = 200
+base_damage = 25.0
+base_projectile_speed = 200
+duration = 1.0
 damage_multiplier = 0.0
 area_multiplier = 0.0
 projectile_speed_multiplier = 0.0
-projectile_pierce = 10
+pierce = 0
 duration_multiplier = 0.0
 
 [node name="CollisionShape2D" parent="." index="0"]

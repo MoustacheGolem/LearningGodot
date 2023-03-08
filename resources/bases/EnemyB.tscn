@@ -37,6 +37,7 @@ material = SubResource( 8 )
 animation = "default"
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 17 )
 shape = SubResource( 9 )
 
 [node name="Hurtbox" parent="." index="2"]

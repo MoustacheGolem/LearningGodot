@@ -7,9 +7,8 @@ export(int) var maxspeed = 1000
 
 func setSpeed(val):
 	if val != speed:
-		speed = clamp(speed,0,maxspeed)
+		speed = clamp(val,0,1000)
 		
-	
 func setTarget(val):
 	target = val
 

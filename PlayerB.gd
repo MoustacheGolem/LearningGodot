@@ -25,11 +25,10 @@ func _ready():
 
 func AddSpell():
 	var spell = SPELL.instance()
-#	spell.Init(projectile_count_bonus,cooldown_multiplier)
+	
 	add_child(spell)
 
 func get_input_direction():
-	
 	return Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 func _process(delta):
@@ -38,7 +37,7 @@ func _process(delta):
 
 func move():
 	set_linear_velocity(velocity)
-#	velocity = move_and_slide(velocity)
+
 
 func _integrate_forces(state):
 	move()

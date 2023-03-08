@@ -2,7 +2,7 @@ extends "res://scripts/MoveBehavior.gd"
 
 var direction
 
-func init(_speed):
+func Init(_speed):
 	speed = _speed
 
 func _physics_process(delta):
