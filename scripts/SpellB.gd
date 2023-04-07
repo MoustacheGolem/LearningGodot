@@ -22,70 +22,70 @@ export(float) var duration_multiplier: float = 0
 export(float) var cooldown: float = 2.0
 var cooldown_multiplier: float = 0
 
-var characterData = load("res://Data/ItemData.tres").characterData.DART
+var characterData = load("res://Data/ItemData.tres").spellData.DART
 
 func _ready():
-	print(characterData)
-	pass
+#    print(characterData)
+    pass
 func _input(event):
-	var just_pressed = event.is_pressed() and not event.is_echo()
-	if Input.is_key_pressed(KEY_S) and just_pressed:
-		LevelDown()
-	
-	if Input.is_action_just_pressed("key_w"):
-		LevelUp()
+    var just_pressed = event.is_pressed() and not event.is_echo()
+    if Input.is_key_pressed(KEY_S) and just_pressed:
+        LevelDown()
+    
+    if Input.is_action_just_pressed("key_w"):
+        LevelUp()
 func _process(delta):
-	pass
-		
+    pass
+        
 
 
 
 func LevelUp():
-	for key in characterData[level]:
-		match key:
-			"damage_multiplier":
-				damage_multiplier += characterData[level].damage_multiplier
-			"area_multiplier":
-				area_multiplier += characterData[level].area_multiplier
-			"projectile_speed_multiplier":
-				projectile_speed_multiplier += characterData[level].projectile_speed_multiplier
-			"pierce":
-				pierce += characterData[level].pierce
-			"projectile_count":
-				projectile_count += characterData[level].projectile_count
-			"duration_multiplier" :
-				duration_multiplier += characterData[level].duration_multiplier
-			"cooldown_multiplier" :
-				cooldown_multiplier -= characterData[level].cooldown_multiplier
-	level = clamp(level+1,0,max_level)
-	pass
+    for key in characterData[level]:
+        match key:
+            "damage_multiplier":
+                damage_multiplier += characterData[level].damage_multiplier
+            "area_multiplier":
+                area_multiplier += characterData[level].area_multiplier
+            "projectile_speed_multiplier":
+                projectile_speed_multiplier += characterData[level].projectile_speed_multiplier
+            "pierce":
+                pierce += characterData[level].pierce
+            "projectile_count":
+                projectile_count += characterData[level].projectile_count
+            "duration_multiplier" :
+                duration_multiplier += characterData[level].duration_multiplier
+            "cooldown_multiplier" :
+                cooldown_multiplier -= characterData[level].cooldown_multiplier
+    level = clamp(level+1,0,max_level)
+    pass
 
 func LevelDown():
-	level = clamp(level-1,0,max_level)
-	for key in characterData[level]:
-		match key:
-			"damage_multiplier":
-				damage_multiplier -= characterData[level].damage_multiplier
-			"area_multiplier":
-				area_multiplier -= characterData[level].area_multiplier
-			"projectile_speed_multiplier":
-				projectile_speed_multiplier -= characterData[level].projectile_speed_multiplier
-			"pierce":
-				pierce -= characterData[level].pierce
-			"projectile_count":
-				projectile_count -= characterData[level].projectile_count
-			"duration_multiplier" :
-				duration_multiplier -= characterData[level].duration_multiplier
-			"cooldown_multiplier" :
-				cooldown_multiplier += characterData[level].cooldown_multiplier
-	pass
-	
+    level = clamp(level-1,0,max_level)
+    for key in characterData[level]:
+        match key:
+            "damage_multiplier":
+                damage_multiplier -= characterData[level].damage_multiplier
+            "area_multiplier":
+                area_multiplier -= characterData[level].area_multiplier
+            "projectile_speed_multiplier":
+                projectile_speed_multiplier -= characterData[level].projectile_speed_multiplier
+            "pierce":
+                pierce -= characterData[level].pierce
+            "projectile_count":
+                projectile_count -= characterData[level].projectile_count
+            "duration_multiplier" :
+                duration_multiplier -= characterData[level].duration_multiplier
+            "cooldown_multiplier" :
+                cooldown_multiplier += characterData[level].cooldown_multiplier
+    pass
+    
 func SetLevel(new_l):
-	while(level != new_l):
-		if new_l > level:
-			LevelUp()
-		elif new_l < level:
-			LevelDown()
-	pass
-	
+    while(level != new_l):
+        if new_l > level:
+            LevelUp()
+        elif new_l < level:
+            LevelDown()
+    pass
+    
 

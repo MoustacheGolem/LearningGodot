@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/EntityB.gd" type="Script" id=1]
 [ext_resource path="res://assets/pugnala_walk.png" type="Texture" id=2]
 [ext_resource path="res://resources/bases/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/Themes/healthbar.tres" type="Theme" id=4]
 [ext_resource path="res://assets/baseenemy.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ball.png" type="Texture" id=6]
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -23,6 +24,10 @@ resource_local_to_scene = true
 shader = SubResource( 7 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 79, 79 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 5 )
@@ -46,8 +51,8 @@ region = Rect2( 87, 0, 29, 35 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
+"frames": [ SubResource( 12 ), SubResource( 11 ) ],
+"loop": false,
 "name": "default",
 "speed": 5.0
 }, {

@@ -50,38 +50,38 @@ var velocity = Vector2.ZERO
 
 
 func _ready():
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 #func move():
 #	velocity = move(velocity)
 
 func move():
-	set_linear_velocity(velocity)
+    set_linear_velocity(velocity)
 #	move_and_slide(velocity)
 
 func _integrate_forces(state):
-	move()
-	
+    move()
+    
 func _process(delta):
-	$HealthBar.value = health
-	
-	
+    $HealthBar.value = health
+    
+    
 func _physics_process(delta):
 #	if Performance.get_monitor(Performance.TIME_FPS) < 30:
 #		if randi() % 2 == 0:
 #			return
-	
-	velocity = Vector2.ZERO
-	
-	
+    
+    velocity = Vector2.ZERO
+    
+    
 func Die():
-	queue_free()
-	
+    queue_free()
+    
 func HandleDamage(value):
-	health -= (value - block) * (1-defence)
-	health = clamp(health,0,max_health)
-	if(health == 0):
-		Die()
-	$FlashAnimation.play("Flash animation")
+    health -= (value - block) * (1-defence)
+    health = clamp(health,0,max_health)
+    if(health == 0):
+        Die()
+    $FlashAnimation.play("Flash animation")
 
 
